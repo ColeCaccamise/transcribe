@@ -61,16 +61,19 @@ func main() {
 		os.Exit(1)
 	}
 
+	// get input file directory
+	inputDir := filepath.Dir(inputFile)
+	
 	// generate unique output filenames
 	baseName := filepath.Base(inputFile)
 	ext := filepath.Ext(baseName)
 	nameWithoutExt := strings.TrimSuffix(baseName, ext)
 	timestamp := time.Now().Format("20060102_150405")
 	
-	// create output filenames
-	audioFile := fmt.Sprintf("%s_%s.mp3", nameWithoutExt, timestamp)
-	transcriptFile := fmt.Sprintf("%s_%s.txt", nameWithoutExt, timestamp)
-	jsonFile := fmt.Sprintf("%s_%s.json", nameWithoutExt, timestamp)
+	// create output filenames in same directory as input
+	audioFile := filepath.Join(inputDir, fmt.Sprintf("%s_%s.mp3", nameWithoutExt, timestamp))
+	transcriptFile := filepath.Join(inputDir, fmt.Sprintf("%s_%s.txt", nameWithoutExt, timestamp))
+	jsonFile := filepath.Join(inputDir, fmt.Sprintf("%s_%s.json", nameWithoutExt, timestamp))
 
 	// convert video to audio if needed
 	if strings.ToLower(ext) == ".mp4" {

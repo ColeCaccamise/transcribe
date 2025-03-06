@@ -15,12 +15,12 @@ A simple utility to transcribe audio files (MP3 or MP4) using AWS Transcribe ser
 2. Run the utility with your file:
 
 ```bash
-go run main.go -file=your_audio_file.mp3
+go run main.go /path/to/your_audio_file.mp3
 ```
 
 ## Output
 
-The utility will create a `transcript.txt` file in the same directory as the audio file, containing the transcribed text.
+The utility will create a `[filename]_[timestamp].txt` file in the same directory as the audio file, containing the transcribed text.
 
 ## AWS Policy
 
